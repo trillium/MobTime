@@ -59,6 +59,11 @@
 	font-size: 40px;
 }
 
+.typer-label {
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 28px;
+}
+
 .next-turn-label {
 	-fx-text-fill: #FFFFFF;
 	-fx-font-size: 20px;
