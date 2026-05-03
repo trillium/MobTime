@@ -25,6 +25,7 @@ public class Settings {
 	protected ObservableList<People> users = FXCollections.observableArrayList();
 	protected StringProperty userMessage = new SimpleStringProperty("");
 	protected StringProperty nextUserMessage = new SimpleStringProperty("");
+	protected StringProperty typerMessage = new SimpleStringProperty("");
 	protected StringProperty userName = new SimpleStringProperty("MobTime");
 	
 	private Settings() {
@@ -86,6 +87,7 @@ public class Settings {
 
 	public void updateUserDisplay() {
 		displayUserMessage();
+		displayTyperMessage();
 		displayNextUserMessage();
 	}
 
@@ -96,16 +98,28 @@ public class Settings {
 		return users.get((index) % users.size());
 	}
 
-	private void displayNextUserMessage() {
+	private void displayTyperMessage() {
 		People user = getUser(getCurrentUser() + 1);
 		if (user == null) {
-			nextUserMessage.set("");
+			typerMessage.set("");
 			return;
 		}
 		if (isBreak(user)) {
 			user = getUser(getCurrentUser() + 2);
 		}
-		nextUserMessage.set(">> " + user.getName());
+		typerMessage.set("Typer: " + user.getName());
+	}
+
+	private void displayNextUserMessage() {
+		People user = getUser(getCurrentUser() + 2);
+		if (user == null) {
+			nextUserMessage.set("");
+			return;
+		}
+		if (isBreak(user)) {
+			user = getUser(getCurrentUser() + 3);
+		}
+		nextUserMessage.set("Next: " + user.getName());
 	}
 
 	private boolean isBreak(People user) {
@@ -129,7 +143,7 @@ public class Settings {
 			userName.set("Break");
 		} else {
 			String name = user.getName();
-			userMessage.set(name +"'s Turn");
+			userMessage.set("Talker: " + name);
 			userName.set(name);
 		}
 	}

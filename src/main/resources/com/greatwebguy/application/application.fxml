@@ -61,13 +61,14 @@
       </AnchorPane>
     <AnchorPane fx:id="bottomPane" maxHeight="-1.0" maxWidth="-1.0" styleClass="main-pane" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="turnLabel" alignment="CENTER" layoutX="-1.0" layoutY="402.0" prefHeight="50.0" prefWidth="826.0" styleClass="turn-label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutY="136.0" lineSpacing="2.0" prefHeight="219.0" prefWidth="826.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+            <Label fx:id="turnLabel" alignment="CENTER" layoutX="-1.0" layoutY="370.0" prefHeight="50.0" prefWidth="826.0" styleClass="turn-label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutY="136.0" lineSpacing="2.0" prefHeight="219.0" prefWidth="826.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
           <font>
             <Font name="Monospaced Regular" size="187.0" />
           </font>
         </Label>
-            <Label fx:id="nextTurnLabel" alignment="BASELINE_RIGHT" centerShape="false" contentDisplay="RIGHT" layoutX="482.0" layoutY="508.0" prefHeight="50.0" prefWidth="334.0" scaleShape="false" styleClass="next-turn-label" textAlignment="RIGHT">
+            <Label fx:id="typerLabel" alignment="CENTER" layoutX="-1.0" layoutY="420.0" prefHeight="40.0" prefWidth="826.0" styleClass="typer-label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="nextTurnLabel" alignment="BASELINE_RIGHT" centerShape="false" contentDisplay="RIGHT" layoutX="482.0" layoutY="468.0" prefHeight="40.0" prefWidth="334.0" scaleShape="false" styleClass="next-turn-label" textAlignment="RIGHT">
                <font>
                   <Font size="11.0" />
                </font>
