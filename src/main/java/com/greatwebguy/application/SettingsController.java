@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -26,8 +25,11 @@ public class SettingsController implements Initializable {
 	@FXML // fx:id="settingsModal"
 	private VBox settingsModal;
 
-	@FXML // fx:id="timeSlider"
-	private Slider timeSlider;
+	@FXML // fx:id="timeDecrease"
+	private Button timeDecrease;
+
+	@FXML // fx:id="timeIncrease"
+	private Button timeIncrease;
 
 	@FXML // fx:id="timeInput"
 	private TextField timeInput;
@@ -56,7 +58,8 @@ public class SettingsController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		assert settingsModal != null : "fx:id=\"settingsModal\" was not injected: check your FXML file 'application.fxml'.";
-		assert timeSlider != null : "fx:id=\"timeSlider\" was not injected: check your FXML file 'application.fxml'.";
+		assert timeDecrease != null : "fx:id=\"timeDecrease\" was not injected: check your FXML file 'application.fxml'.";
+		assert timeIncrease != null : "fx:id=\"timeIncrease\" was not injected: check your FXML file 'application.fxml'.";
 		assert timeInput != null : "fx:id=\"timeInput\" was not injected: check your FXML file 'application.fxml'.";
 		assert addUser != null : "fx:id=\"addUser\" was not injected: check your FXML file 'application.fxml'.";
 		assert removeUser != null : "fx:id=\"removeUser\" was not injected: check your FXML file 'application.fxml'.";
@@ -65,7 +68,6 @@ public class SettingsController implements Initializable {
 		assert downUser != null : "fx:id=\"downUser\" was not injected: check your FXML file 'application.fxml'.";
 
 		timeInput.setText(Settings.instance().getStartTime() + "");
-		timeSlider.setValue(Settings.instance().getStartTime());
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -73,14 +75,8 @@ public class SettingsController implements Initializable {
 			}
 		});
 
-		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-				int value = Math.round(newValue.intValue());
-				timeInput.setText(value + "");
-				Settings.instance().setStartTime(value);
-			}
-		});
+		timeDecrease.setOnAction(event -> adjustTime(-1));
+		timeIncrease.setOnAction(event -> adjustTime(1));
 
 		timeInput.textProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -90,7 +86,7 @@ public class SettingsController implements Initializable {
 				} else if (containsInvalidInput(newValue)) {
 					timeInput.setText(oldValue);
 				} else {
-					timeSlider.setValue(Integer.parseInt(newValue));
+					Settings.instance().setStartTime(Integer.parseInt(newValue));
 				}
 			}
 		});
@@ -174,7 +170,14 @@ public class SettingsController implements Initializable {
 	}
 
 	private boolean containsInvalidInput(String newValue) {
-		return !newValue.matches("\\d*") || (Integer.parseInt(newValue) > timeSlider.getMax());
+		return !newValue.matches("\\d*") || (Integer.parseInt(newValue) > 99);
+	}
+
+	private void adjustTime(int delta) {
+		int current = Settings.instance().getStartTime();
+		int next = Math.max(1, Math.min(99, current + delta));
+		timeInput.setText(next + "");
+		Settings.instance().setStartTime(next);
 	}
 
 	private void addUser() {

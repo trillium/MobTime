@@ -9,14 +9,25 @@
    <children>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="settings-main" VBox.vgrow="ALWAYS">
          <children>
-            <Label contentDisplay="CENTER" layoutX="14.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-label" text="Time" />
-            <TextField fx:id="timeInput" alignment="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-time" text="1" />
-            <Label alignment="CENTER" layoutX="105.0" layoutY="15.0" prefHeight="27.0" prefWidth="65.0" styleClass="settings-label" text="minutes" />
-            <Slider fx:id="timeSlider" blockIncrement="1.0" layoutX="180.0" layoutY="21.0" max="20.0" min="1.0" prefHeight="16.0" prefWidth="183.0">
+            <Button fx:id="timeDecrease" contentDisplay="GRAPHIC_ONLY" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" styleClass="remove-button" text="-">
+               <graphic>
+                  <FontIcon iconLiteral="fas-minus" iconColor="white" styleClass="settings-button" />
+               </graphic>
                <cursor>
-                  <Cursor fx:constant="CLOSED_HAND" />
+                  <Cursor fx:constant="HAND" />
                </cursor>
-            </Slider>
+            </Button>
+            <Label contentDisplay="CENTER" layoutX="50.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-label" text="Time" />
+            <TextField fx:id="timeInput" alignment="CENTER" layoutX="95.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-time" text="1" />
+            <Label alignment="CENTER" layoutX="141.0" layoutY="15.0" prefHeight="27.0" prefWidth="65.0" styleClass="settings-label" text="minutes" />
+            <Button fx:id="timeIncrease" contentDisplay="GRAPHIC_ONLY" layoutX="210.0" layoutY="15.0" mnemonicParsing="false" styleClass="save-button" text="+">
+               <graphic>
+                  <FontIcon iconLiteral="fas-plus" iconColor="white" styleClass="settings-button" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
 
             <ListView fx:id="userList" layoutX="16.0" layoutY="86.0" prefHeight="151.0" prefWidth="388.0" />
             <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add new participant" styleClass="user-input" />
